@@ -41,12 +41,9 @@ const Footer = () => (
 )
 
 const CreateNew = (props) => {
-  // const [content, setContent] = useState('')
-  // const [author, setAuthor] = useState('')
-  // const [info, setInfo] = useState('')
-  const content = useField('text')
-  const author = useField('text')
-  const url = useField('text')
+  const [content, setContent] = useState('')
+  const [author, setAuthor] = useState('')
+  const [info, setInfo] = useState('')
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
@@ -54,7 +51,7 @@ const CreateNew = (props) => {
     props.addNew({
       content,
       author,
-      url,
+      info,
       votes: 0
     })
     navigate('/anecdotes')
@@ -66,15 +63,15 @@ const CreateNew = (props) => {
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input {...content} />
+          <input name='content' value={content} onChange={(e) => setContent(e.target.value)} />
         </div>
         <div>
           author
-          <input {...author} />
+          <input name='author' value={author} onChange={(e) => setAuthor(e.target.value)} />
         </div>
         <div>
           url for more info
-          <input {...url} />
+          <input name='info' value={info} onChange={(e)=> setInfo(e.target.value)} />
         </div>
         <button>create</button>
       </form>
